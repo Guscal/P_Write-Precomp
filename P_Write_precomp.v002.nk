@@ -1,0 +1,167 @@
+#! C:/Program Files/Nuke14.0v1/nuke-14.0.1.dll -nx
+version 14.0 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-1" y="-8" w="2560" h="1369" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1897" stretch="1"/>
+            <splitter orientation="2">
+                <split size="779"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="548"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                    <page id="DAG.3"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name "C:/Users/dlgdc/OneDrive/Escritorio/P_Write precomp test/P_Write_precomp.v002.nk"
+ last_frame 356
+ lock_range true
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ monitorOutLUT rec709
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard1
+ xpos 691
+ ypos -71
+}
+Crop {
+ box {0 0 2048 1556}
+ name Crop2
+ xpos 691
+ ypos 29
+}
+Group {
+ name P_Precomp
+ tile_color 0x238eff
+ gl_color 0xffffffff
+ xpos 691
+ ypos 70
+ addUserKnob {20 User}
+ addUserKnob {41 channels T PrecompWrite1.channels}
+ addUserKnob {1 precompName l name}
+ precompName Denoised
+ addUserKnob {41 file +INVISIBLE T PrecompWrite1.file}
+ addUserKnob {41 colorspace l "output transform" T PrecompWrite1.colorspace}
+ addUserKnob {41 premultiplied -STARTLINE T PrecompWrite1.premultiplied}
+ addUserKnob {41 raw l "raw data" -STARTLINE T PrecompWrite1.raw}
+ addUserKnob {26 _2 l "<b>EXR Options</b>" +HIDDEN}
+ addUserKnob {41 write_ACES_compliant_EXR l "write ACES compliant EXR" +HIDDEN T PrecompWrite1.write_ACES_compliant_EXR}
+ addUserKnob {41 datatype +HIDDEN T PrecompWrite1.datatype}
+ addUserKnob {41 compression +HIDDEN T PrecompWrite1.compression}
+ addUserKnob {26 _3 l "<b>JPEG Options</b>" +HIDDEN}
+ addUserKnob {26 text l "" +STARTLINE}
+ addUserKnob {26 _4 l "<b>EXR Options</b>"}
+ addUserKnob {41 write_ACES_compliant_EXR_1 l "write ACES compliant EXR" -STARTLINE T PrecompWrite1.write_ACES_compliant_EXR}
+ addUserKnob {41 autocrop -STARTLINE T PrecompWrite1.autocrop}
+ addUserKnob {41 datatype_1 l datatype T PrecompWrite1.datatype}
+ addUserKnob {41 compression_1 l compression T PrecompWrite1.compression}
+ addUserKnob {20 group_1 l "more options" n 1}
+ group_1 0
+ addUserKnob {41 heroview T PrecompWrite1.heroview}
+ addUserKnob {41 metadata T PrecompWrite1.metadata}
+ addUserKnob {41 noprefix l "do not attach prefix" -STARTLINE T PrecompWrite1.noprefix}
+ addUserKnob {41 interleave T PrecompWrite1.interleave}
+ addUserKnob {41 first_part l "first part" T PrecompWrite1.first_part}
+ addUserKnob {41 "standard layer name format" T "PrecompWrite1.standard layer name format"}
+ addUserKnob {41 write_full_layer_names l "write full layer names" T PrecompWrite1.write_full_layer_names}
+ addUserKnob {41 truncateChannelNames l "truncate channel names" T PrecompWrite1.truncateChannelNames}
+ addUserKnob {20 endGroup_1 l endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {26 jpegOpt l "<b>JPEG Options</b>"}
+ addUserKnob {20 group l "" +STARTLINE n 1}
+ group 0
+ addUserKnob {41 channels_1 l channels T PrecompWrite2.channels}
+ addUserKnob {26 ""}
+ addUserKnob {41 colorspace_1 l "output transform" T PrecompWrite2.colorspace}
+ addUserKnob {41 premultiplied_1 l premultiplied -STARTLINE T PrecompWrite2.premultiplied}
+ addUserKnob {41 raw_1 l "raw data" -STARTLINE T PrecompWrite2.raw}
+ addUserKnob {26 ""}
+ addUserKnob {41 _jpeg_sub_sampling l sub-sampling T PrecompWrite2._jpeg_sub_sampling}
+ addUserKnob {41 _jpeg_quality l quality T PrecompWrite2._jpeg_quality}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {26 text_3 l <b>Format</b>}
+ addUserKnob {6 RenderJpgs l "render .jpeg instead" t "this functionality works but the jpeg options dont appaer correctly and the exr options dosent dissapear correctly yet thats why its turn off. but you can render jpgs " +STARTLINE}
+ addUserKnob {26 _1 l "" +STARTLINE}
+ addUserKnob {22 Rnder l Render T "import nuke\nimport os\nimport re\n\ndef create_assets_folder():\n    script_path = nuke.root().name()\n\n    if script_path:\n        script_directory = os.path.dirname(script_path)\n        assets_folder = \"_Assets\"\n\n        assets_path = os.path.join(script_directory, assets_folder)\n        if not os.path.exists(assets_path):\n            os.makedirs(assets_path)\n\n        file_name = os.path.splitext(os.path.basename(script_path))\[0]\n        current_node = nuke.thisNode()\n        text_value = current_node.knob(\"precompName\").value()\n\n        # Check if the filename has a version part and split it\n        version_regex = '(\\\\.v\\\\d+)'\n        match = re.search(version_regex, file_name)\n        if match:\n            # Filename has a version part, replace it with precompName and the version\n            base_name = re.sub(version_regex, '', file_name)\n            new_file_name = \"\{\}_\{\}\{\}.####\".format(base_name, text_value, match.group())\n            new_folder_name = \"\{\}_\{\}\{\}\".format(base_name, text_value, match.group())\n        else:\n            # Filename does not have a version part, append precompName at the end\n            new_file_name = \"\{\}_\{\}.####\".format(file_name, text_value)\n            new_folder_name = \"\{\}_\{\}\".format(file_name, text_value)\n\n        new_folder_path = os.path.join(assets_path, new_folder_name)\n        if not os.path.exists(new_folder_path):\n            os.makedirs(new_folder_path)\n        else:\n            print(\"Folder already exists. Skipping folder creation.\")\n\n        write_node1 = current_node.node(\"PrecompWrite1\")\n        write_node2 = current_node.node(\"PrecompWrite2\")\n\n        new_file_name_exr = new_file_name + \".exr\"\n        new_path_with_extension_exr = os.path.join(new_folder_path, new_file_name_exr)\n        new_path_with_extension_exr = new_path_with_extension_exr.replace(\"\\\\\", \"/\")\n\n        file_output_knob1 = write_node1.knob(\"file\")\n        file_output_knob1.setValue(new_path_with_extension_exr)\n\n        # If RenderJpgs is checked, write jpgs with PrecompWrite2.\n        if current_node.knob(\"RenderJpgs\").value():\n            new_file_name_jpg = new_file_name + \".jpg\"\n            new_path_with_extension_jpg = os.path.join(new_folder_path, new_file_name_jpg)\n            new_path_with_extension_jpg = new_path_with_extension_jpg.replace(\"\\\\\", \"/\")\n\n            file_output_knob2 = write_node2.knob(\"file\")\n            file_output_knob2.setValue(new_path_with_extension_jpg)\n\n        print(\"File output paths updated.\")\n    else:\n        print(\"Script path is not available.\")\n\ncreate_assets_folder()\n\n# If checkbox is ticked, write with PrecompWrite2. If not, write with PrecompWrite1.\nif nuke.thisNode().knob(\"RenderJpgs\").value():\n    write_node = nuke.thisNode().node(\"PrecompWrite2\")\nelse:\n    write_node = nuke.thisNode().node(\"PrecompWrite1\")\n\nwrite_node.knob(\"Render\").execute()\n" +STARTLINE}
+ addUserKnob {22 readFromWrite l "Read From Write" t "aun no funciona correctamente" -STARTLINE T "import nuke\nimport os\nimport re\n\ndef get_image_sequence_frames(file_path):\n    directory, base_filename = os.path.split(file_path)\n    filename_without_ext, file_extension = os.path.splitext(base_filename)\n\n    if file_extension.lower() in \['.exr', '.tiff', '.tif', '.hdr', '.jpg', '.png', '.dpx']:\n        frame_pattern = re.compile(r'_?(\\d+)\$')\n    else:\n        frame_pattern = re.compile(r'_?(\\d+)_?')\n\n    frame_numbers = \[int(num) for num in frame_pattern.findall(filename_without_ext)]\n\n    if frame_numbers:\n        first_frame = min(frame_numbers)\n        last_frame = max(frame_numbers)\n    else:\n        first_frame = nuke.root().firstFrame()\n        last_frame = nuke.root().lastFrame()\n\n    return first_frame, last_frame\n\ndef get_frame_range_from_folder(directory):\n    files = os.listdir(directory)\n\n    frame_pattern = re.compile(r'_?(\\d+)_?')\n\n    frame_numbers = \[]\n    for filename in files:\n        base_filename, file_extension = os.path.splitext(filename)\n        if file_extension.lower() in \['.exr', '.tiff', '.tif', '.hdr', '.jpg', '.png', '.dpx']:\n            frame_numbers.extend(\[int(num) for num in frame_pattern.findall(base_filename)])\n\n    if frame_numbers:\n        first_frame = min(frame_numbers)\n        last_frame = max(frame_numbers)\n    else:\n        first_frame = nuke.root().firstFrame()\n        last_frame = nuke.root().lastFrame()\n\n    return first_frame, last_frame\n\ndef nearest_frame(frame, frame_list):\n    return min(frame_list, key=lambda x: abs(x - frame))\n\ndef create_read_node_with_sequence(file_path):\n    directory, _ = os.path.split(file_path)\n    files = os.listdir(directory)\n    image_extensions = \['.exr', '.tiff', '.tif', '.hdr', '.jpg', '.png', '.dpx']\n\n    for file_extension in image_extensions:\n        files_with_extension = \[file for file in files if file.endswith(file_extension)]\n        if not files_with_extension:\n            continue\n\n        modified_file_path = os.path.splitext(file_path)\[0] + file_extension\n        first_frame, last_frame = get_image_sequence_frames(modified_file_path)\n        read_node = nuke.createNode(\"Read\")\n        read_node\[\"file\"].setValue(modified_file_path)\n\n        folder_first_frame, folder_last_frame = get_frame_range_from_folder(directory)\n\n        read_node\[\"first\"].setValue(nearest_frame(first_frame, range(folder_first_frame, folder_last_frame + 1)))\n        read_node\[\"last\"].setValue(nearest_frame(last_frame, range(folder_first_frame, folder_last_frame + 1)))\n\n        read_node\[\"origfirst\"].setValue(folder_first_frame)\n        read_node\[\"origlast\"].setValue(folder_last_frame)\n\ndef main():\n    current_node = nuke.thisNode()\n    file_path = current_node\[\"file\"].getValue()\n\n    if file_path:\n        try:\n            with nuke.root():\n                create_read_node_with_sequence(file_path)\n        except ValueError:\n            read_node = nuke.createNode(\"Read\")\n            read_node\[\"file\"].setValue(file_path)\n            nuke.message(\"No image sequence found in the folder. Created Read node with the original file path.\")\n    else:\n        nuke.message(\"File path is empty. Please set a valid file path.\")\n\nmain()\n"}
+ addUserKnob {22 RenderPath l "Render Path" -STARTLINE T "import os\nimport subprocess\nimport nuke\n\ncurrent_node = nuke.thisNode()\n\nfile_path = current_node\[\"file\"].getValue()\n\nif file_path:\n    print(\"File Path:\", file_path)\n\n    folder_path = os.path.dirname(file_path)\n\n    # Open file browser based on the platform\n    if folder_path:\n        script_directory = os.path.normpath(folder_path)\n        if nuke.env\['WIN32']:\n            # Windows\n            subprocess.Popen(\['explorer', script_directory])\n        elif nuke.env\['MACOS']:\n            # macOS\n            subprocess.Popen(\['open', script_directory])\n        else:\n            # Other platforms (Linux, etc.)\n            nuke.message(\"File browser open not supported on this platform.\")\n    else:\n        nuke.message(\"Folder path is not available.\")\n\n    print(\"Updated Folder Path:\", folder_path)\nelse:\n    nuke.message(\"Please render something first.\")\n"}
+ addUserKnob {22 FilePath l ".nk Path" -STARTLINE T "import nuke\nimport os\nimport subprocess\n\ndef open_script_directory_in_file_browser():\n    \n    script_path = nuke.root().name()\n\n    \n    if script_path:\n       \n        script_directory = os.path.dirname(script_path)\n\n        # Open the script directory in a file browser based on the operating system\n        if nuke.env\['WIN32']:\n            # Windows\n            subprocess.Popen(\['explorer', os.path.normpath(script_directory)])\n        elif nuke.env\['MACOS']:\n            # macOS\n            subprocess.Popen(\['open', os.path.normpath(script_directory)])\n        else:\n            # Other platforms (Linux, etc.)\n            print(\"File browser open not supported on this platform.\")\n    else:\n        print(\"Script path is not available.\")\n\n# Call the function to open the script directory in a file browser\nopen_script_directory_in_file_browser()"}
+ addUserKnob {20 About}
+ addUserKnob {26 text_1 l "" +STARTLINE T "for this node to work correctly a .nk version of the file mos be already saved \n\nPara el correcto funcionamiento ya debe existir  una version guardada del .nk\n\n\nUSE:\n \tReplace Denoised with name of your precomp.\n\n\tRender.\n\n\tBe happy.\n\nUSO:\n\n\tRemplaza Denoised con el nombre de tu pase.\n\n\tRederea.\n\n\tSe feliz.\n\n\n\n\n\n"}
+ addUserKnob {26 ""}
+ addUserKnob {26 text_2 l "" t "-changelog added jpg options and the ability to write .jpegs\n\n- the whole node might be reworked to do any format dunno know yet\n" +STARTLINE T "v1.3.1 - Guscal - 2023 "}
+}
+ Input {
+  inputs 0
+  name Comp
+  xpos -40
+  ypos -9
+ }
+set N908d2000 [stack 0]
+ Write {
+  channels rgba
+  file_type exr
+  first_part rgba
+  checkHashOnRead false
+  version 44
+  name PrecompWrite1
+  selected true
+  xpos -40
+  ypos 133
+ }
+ Output {
+  name Output1
+  xpos -40
+  ypos 303
+ }
+push $N908d2000
+ Write {
+  channels rgba
+  file_type jpeg
+  checkHashOnRead false
+  version 46
+  name PrecompWrite2
+  xpos -313
+  ypos 98
+ }
+end_group
+Viewer {
+ frame 1
+ frame_range 1-356
+ monitorOutOutputTransform rec709
+ name Viewer1
+ xpos 691
+ ypos 163
+}
