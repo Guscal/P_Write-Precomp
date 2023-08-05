@@ -30,9 +30,11 @@ Buttons
 - Render button:
   it will of course render your image sequence, but it will create a folder called _Assets (this folder will be crated where the .nk file is located so feel free to change the destination directory).
   
+  vresioned solders will be created every time you save a new version of your .nk file and the image sequence inside its always replaced if it has the same name 
+  
   ![image](https://github.com/Guscal/P_Write-Precomp/assets/57334994/a799c5dd-ddf1-4206-af56-b5c53482452c)
 
-  inside this folder will be your output folder with the image sequence.
+  inside this folder will be your output folder with your precomp name and  the image sequence.
   
   ![image](https://github.com/Guscal/P_Write-Precomp/assets/57334994/feeec1b7-5fdb-4d8d-ba3d-331eafefb853)
 
